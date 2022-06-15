@@ -1,0 +1,98 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #2f3135 !important;
+    color: #eee;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    height: 100%;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+}
+
+.card-header {
+    position: relative;
+}
+
+.card-header .clave {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.card-header .name {
+    font-size: 1rem;
+}
+
+.card-product {
+    height: 130px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    color: #eee;
+    background: #2f3135;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.card-product .dismiss {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    color: #eee;
+    background: rgb(218, 67, 67);
+    border-radius: 50%;
+    font-size: 1.3rem;
+}
+
+.card-product h3 {
+    font-size: 1.1rem;
+    padding-right: 25px;
+}
+
+@media (max-width: 768px) {
+    .card-product h3 {
+        padding-top: 20px;
+    }
+
+    .card-product .details {
+        padding-bottom: 10px;
+    }
+}
+
+.card-product .info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.card-product .details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-product .details .cant {
+    border-radius: 50%;
+    padding: 5px 9px;
+}
+
+.card-product .details .price {
+    font-size: 1.1rem;
+}
