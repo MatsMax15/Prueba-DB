@@ -7,21 +7,26 @@ const main = () => {
     db.map(product => {
 
         const div = document.createElement('div')
+
+        const length_name = product.name.length
+        const name = length_name > 42 ? product.name.substring(0, 42) + '...' : product.name
         
+        const price = new Intl.NumberFormat('en-ES', { maximumSignificantDigits: 3 }).format(product.price) + '.00'
+
         div.classList.add('col-12', 'col-sm-6', 'col-md-6', 'col-lg-4', 'col-xl-3', 'mb-3', 'mt-3')
         div.innerHTML = `
-            <div class="card bg-dark">
+            <div class="card bg-dark card-item">
                 <div class="card-header">
                     <img src="./assets/img/img.png" alt="">
                     <span class="badge bg-primary clave">${ product.clave }</span>
                 </div>
                 <div class="card-body">
-                    <span class="name">${ product.name }</span>
-                    <h3 class="price">$${ product.price }</h3>
+                    <span class="name">${ name }</span>
+                    <span class="price">$ ${ price }</span>
                     <p class="category">${ product.category }</p>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-sm btn-success" onclick="Add(${ product._id })"><i class="bi bi-cart3"></i> Agregar al carrito</button>
+                    <button class="btn btn-sm btn-success btn-add" onclick="Add(${ product._id })"><i class="bi bi-cart3"></i> Agregar al carrito</button>
                 </div>
             </div>
         `
@@ -59,6 +64,8 @@ const Add = id => {
 const  AddItem = product => {
     
     const list_products = document.getElementById('list-products')
+    
+    const price = new Intl.NumberFormat('en-ES', { maximumSignificantDigits: 3 }).format(product.price) + '.00'
 
     const div = document.createElement('div')
     div.setAttribute('id', `product-${ product._id }`)
@@ -66,14 +73,14 @@ const  AddItem = product => {
     div.innerHTML = `
         <button type="button" class="dismiss" title="Eliminar" onclick="DeleteItem(this)"><i class="bi bi-x"></i></button>
         <div class="row">
-            <div class="col-4 col-sm-3 col-xl-2">
+            <div class="col-3 col-sm-3 col-xl-2 img">
                 <img src="./assets/img/img.png" alt="">
             </div>
-            <div class="col-8 col-sm-9 col-xl-10 info">
+            <div class="col-9 col-sm-9 col-xl-10 info">
                 <h3>${ product.name }</h3>
                 <div class="details">
-                    <span>Cantidad: <span class="cant bg-success">1</span></span>
-                    <span class="price text-end">$${ product.price }</span>
+                    <div class="content-cant">Cantidad: <div class="cant">1</div></div>
+                    <span class="price text-end">$ ${ price }</span>
                 </div>
             </div>
         </div>
@@ -92,12 +99,15 @@ const GetTotal = () => {
         const price = product.querySelector('.price')
         const cant = product.querySelector('.cant')
         const cant_int = parseInt(cant.innerHTML)
-        const price_int = parseInt(price.innerHTML.replace('$', ''))
+        const price_text = price.innerHTML.replace('$', '')
+        const price_int = parseInt(price_text.replace(',', ''))
 
         total += price_int * cant_int
     })
 
-    document.getElementById('total').innerHTML = `$${ total }`
+    const price = new Intl.NumberFormat('en-ES', { maximumSignificantDigits: 3 }).format(total) + '.00'
+
+    document.getElementById('total').innerHTML = `$ ${ price }`
 
 }
 

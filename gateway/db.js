@@ -20,7 +20,7 @@ const GetDB = ({ id }) => {
             _id: 3,
             clave: 'PRO-0003',
             name: 'Secadora de Cabello Conair Mini de Pared',
-            category: 'Electrónica',
+            category: 'Hogar',
             price: 1499,
             image: '',
         },
